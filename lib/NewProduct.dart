@@ -11,20 +11,8 @@ class NewProduct extends StatefulWidget {
 /// This is the private State class that goes with MyStatefulWidget.
 class _NewProduct extends State<NewProduct> {
   final _formKey = GlobalKey<FormState>();
-  String _username = "";
-  String _password = "";
-
-  void _setUsername(String username) {
-    setState(() {
-      _username = username;
-    });
-  }
-
-  void _setPassword(String password) {
-    setState(() {
-      _password = password;
-    });
-  }
+  Product _newProduct = new Product();
+  String dropdownValue = "";
 
   @override
   Widget build(BuildContext context) {
@@ -83,9 +71,32 @@ class _NewProduct extends State<NewProduct> {
                         if (value == null || value.isEmpty) {
                           return 'Please enter a smell';
                         }
-                        _setUsername(value);
+                        _newProduct.setSmell(SmellEnum.none, 0);
                         return null;
                       },
+                    ),
+                    DropdownButton<String>(
+                      value: dropdownValue,
+                      icon: const Icon(Icons.arrow_downward),
+                      iconSize: 24,
+                      elevation: 16,
+                      style: const TextStyle(color: Colors.deepPurple),
+                      underline: Container(
+                        height: 2,
+                        color: Colors.deepPurpleAccent,
+                      ),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          dropdownValue = newValue!;
+                        });
+                      },
+                      items: <String>['Shampoo', 'Conditioner', 'Soap']
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
                     ),
                     TextFormField(
                       obscureText: true,
@@ -110,7 +121,7 @@ class _NewProduct extends State<NewProduct> {
                         if (value == null || value.isEmpty) {
                           return 'Please enter your password';
                         }
-                        _setPassword(value);
+                        //_setPassword(value);
                         return null;
                       },
                     ),

@@ -57,8 +57,12 @@ class Product {
   SmellEnum _smell = SmellEnum.none;
   CategoryEnum _category = CategoryEnum.none;
 
-  Product(int id, int amount, double price, SmellEnum smell,
-      CategoryEnum category) {
+  Product(
+      [int id = -1,
+      int amount = -1,
+      double price = -1,
+      SmellEnum smell = SmellEnum.none,
+      CategoryEnum category = CategoryEnum.none]) {
     _id = id;
     _amount = amount;
     _price = price;
@@ -139,11 +143,38 @@ class Product {
     _price = price;
   }
 
-  void setSmell(SmellEnum smell) {
-    _smell = smell;
+  void setSmell(SmellEnum smell, [int? smelli]) {
+    if (smelli != null) {
+      _smell = smell;
+    } else {
+      if (smelli == 0) {
+        _smell = SmellEnum.none;
+      } else if (smelli == 1) {
+        _smell = SmellEnum.watermelon;
+      } else if (smelli == 2) {
+        _smell = SmellEnum.apple;
+      } else if (smelli == 3) {
+        _smell = SmellEnum.oatmeal;
+      } else if (smelli == 4) {
+        _smell = SmellEnum.coconut;
+      }
+    }
   }
 
-  void setCategory(CategoryEnum category) {
+  void setCategory(CategoryEnum category, [int? categoryi]) {
+    if (categoryi != null) {
+      _category = category;
+    } else {
+      if (categoryi == 0) {
+        _category = CategoryEnum.none;
+      } else if (categoryi == 1) {
+        _category = CategoryEnum.shampoo;
+      } else if (categoryi == 2) {
+        _category = CategoryEnum.conditioner;
+      } else if (categoryi == 3) {
+        _category = CategoryEnum.soap;
+      }
+    }
     _category = category;
   }
 }

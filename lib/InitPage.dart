@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:undanaturalinventory/DAO.dart';
 import 'Helpers.dart';
 import 'LoginPage.dart';
 
@@ -8,6 +9,12 @@ class InitPage extends StatefulWidget {
 }
 
 class _InitPage extends State<InitPage> {
+  @override
+  void initState() {
+    DataAccessObject.createItem("Coconut", 12, "Shampoo");
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
